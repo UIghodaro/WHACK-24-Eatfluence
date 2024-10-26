@@ -37,7 +37,7 @@
         <div>
 
         </div>
-        <a onclick="generateItem(10)" class = "Restaurant"> Here is an example item!</a><br>
+        <a href = "restaurantView.html" class = "Restaurant"> Here is an example item!</a><br>
             
 
 
@@ -66,6 +66,22 @@
                 document.getElementById("trendsLayout").appendChild(newElt);
             }
         }
+        generateItem(10);
+
+        const Rests = document.querySelectorAll(".Restaurant");
+
+        const checkRestaurants = () => {
+            const triggerBottom = (window.innerHeight/5)*4;
+            Rests.forEach((Restaurant)=>{
+                const RestTop = Restaurant.getBoundingClientRect().top;
+                if(RestTop < triggerBottom) Restaurant.classList.add("show");
+                else box.classList.remove("show");
+            });
+        };
+
+        window.addEventListener("scroll",checkRestaurants);
+        checkRestaurants();
+    
 
         // Function to get query parameters from URL
         function getQueryParam(key) {

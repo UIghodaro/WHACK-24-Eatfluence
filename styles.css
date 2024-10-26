@@ -155,20 +155,32 @@ nav .fa{
 
 /*To do with the restaurant button creation*/
 .Restaurant{
-    display: inline-block;
     text-decoration: none;
     color: #fff;
+    display: flex;
     border: 1px solid #fff;
     padding: 12px 34px;
     font-size: 13px;
-    background: #893c00;
-    position: relative;
+    background-color: #893c00;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    height: 200px;
+    margin: 10px;
     cursor: pointer;
-}
 
+    transform: translateX(400%);
+    transition: transform 1s ease;
+}
+.Restaurant:nth-of-type(even) {
+    transform:translateX(-400%);
+}
+.Restaurant.show{
+    transform: translateX(0);
+}
 .Restaurant:hover{
     border: 1px solid #e06100;
-    background: #e06100;
+    background-color: #e06100;
     transition: 1s;
 }
 
