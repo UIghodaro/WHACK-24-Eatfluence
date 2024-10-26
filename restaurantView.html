@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
 </head>
 <body>
-    <section class="home">
+    <section class="header">
         <nav>
             <a href="home.html"><img src = "Images/Screenshot 2023-10-02 175321.png"></a>
             <div class = "nav-links" id = navLinks>
@@ -28,34 +28,21 @@
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i> <!--Icons-->
         </nav>
-        <div class="IntroStatement">
-            <h1><strong>You hungry yet?</strong></h1>
-            <h2>Welcome to your one stop shop for the trendiest spots!</h2>
-            
-            <!-- Takes the location input -->
-            <form onsubmit="return false;">
-            <input type="text" id="Loca" name="Loca" placeholder="Location" required>
-            <input type="submit" value="Let's eat!" class = "subBtn" onclick="storeLocal()">
-        </form>
-        </div>
     </section>
+
+    <!-- Main, Trends appear here -->
+     <section class = "trendies">
+        <p><strong>Imagine a bunch of really trendy restaurants appearing here in order</strong></p>
+     </section>
+
     <!-- Footer -->
     <section class = "Footer">
         <p> placeholder</p>
     </section>
 
 
-<!-- Technical, actually doing backend shit type shit -->
+<!-- Toggle Menu For Small Devices, using JS -->
     <script>
-        //Encoding entries into the URL for message passing
-        var locationData;
-
-        function storeLocal(){
-            locationData = document.getElementById("Loca");
-            window.location.href = 'trends.html?data=' + encodeURIComponent(locationData);
-        }
-
-        // Toggle Menu For Small Devices
         var navLinks = document.getElementById("navLinks");
 
         function showMenu(){
@@ -65,6 +52,5 @@
             navLinks.style.right = "-200px";
         }
     </script>
-
 </body>
 </html>

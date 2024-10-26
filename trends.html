@@ -31,11 +31,13 @@
     </section>
 
     <!-- Main, Trends appear here -->
-     <section class = "trendsLayout">
+     <section id = "trendsLayout">
         <p><strong>Imagine a bunch of really trendy restaurants appearing here in order</strong></p>
         
-        
-        <a href= variable>
+        <div>
+
+        </div>
+        <a onclick="generateItem(10)" class = "Restaurant"> Here is an example item!</a><br>
             
 
 
@@ -50,8 +52,33 @@
     </section>
 
 
-<!-- Toggle Menu For Small Devices, using JS -->
+<!--  -->
     <script>
+        const parent = document.getElementById("trendsLayout");
+
+        function generateItem(resultsNumber) {
+            for(let i = 0; i < resultsNumber; i++){
+                const newElt = document.createElement("a");
+                newElt.href = "restaurantView.html";
+                newElt.className = "Restaurant";
+                newElt.innerHTML = "Here is another example!"
+
+                document.getElementById("trendsLayout").appendChild(newElt);
+            }
+        }
+
+        // Function to get query parameters from URL
+        function getQueryParam(key) {
+            const urlSearchParams = new URLSearchParams(window.location.search);
+            return urlSearchParams.get(key);
+        }
+    
+    // Get the 'data' parameter from the URL
+    var receivedData = getQueryParam('data');
+    console.log('Received Data:', receivedData);
+    
+    // Use the received data as needed
+    //Toggle Menu For Small Devices, using JS
         var navLinks = document.getElementById("navLinks");
 
         function showMenu(){
