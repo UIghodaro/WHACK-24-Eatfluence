@@ -1,0 +1,194 @@
+*{
+    margin: 0;
+    padding: 0;
+
+    /* <uniquifier>: Use a unique and descriptive class name
+       <weight>: Use a value from 100 to 900
+    */
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    
+}
+
+
+
+/*BACKGROUND HANDLING*/
+.header{
+    background-color: #464ffa;
+}
+
+.home{
+    min-height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(Images/HomeBackground.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+/*NAVIGATION BAR HANDLING*/
+nav{
+    display: flex;
+    padding: 2% 6%;
+    justify-content: space-between;
+    /*background-image: linear-gradient(#0b00a4, #004fa4);*/
+    align-items: center;
+}
+
+nav img{
+    width: 150px;
+}
+.nav-links{   /*Puts the navigation links to the right*/
+    flex: 1;
+    text-align: right;
+}
+.nav-links ul li{   /*Targets the list of navigation links, makes them inline and makes their positions relative*/
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+
+.nav-links ul li a{
+    color: #893c00;
+    text-decoration: none;
+    font-size: 13px;
+}
+.nav-links ul li::after{
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #1683ff;
+    display: block;
+    margin: auto;
+    transition: 0.35s;
+}
+.nav-links ul li:hover::after{
+    width: 100%;
+}
+
+/*Home Main Body items*/
+.IntroStatement{
+    width: 90%;
+    color: #1683ff;
+    font-weight: 300;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+.IntroStatement h1{
+    font-size: 50px;
+    animation: fade-down 2s;
+}
+.IntroStatement h2, .subBtn{
+    margin: 10px 0 40px;
+    font-size: 30px;
+    color: aquamarine;
+    animation: fade-up 2s;
+}
+
+#Loca{display: inline-block;
+    text-decoration: none;
+    border: 1px #d10b0b;
+    padding: 12px 15px;
+    font-size: 13px;
+    font-style: italic;
+    position: relative;
+    animation: fade-up 2s;
+}
+
+.subBtn{
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 12px 34px;
+    font-size: 13px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+}
+.subBtn:hover{
+    border: 1px solid #1683ff;
+    background: #1683ff;
+    transition: 1s;
+}
+
+
+/* Keyframes */
+@keyframes fade-down {
+    0%{
+        opacity: 0;
+        transform: translateY(-60px) scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+}
+@keyframes fade-up {
+    0%{
+        opacity: 0;
+        transform: translateY(60px) scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+}
+
+
+/*Small screen toggle bar*/
+nav .fa{
+    display: none;
+}
+
+
+/*Let's eat! - Home Use section*/
+
+
+
+.footer{
+    width: 100%;
+    text-align: center;
+    padding: 30px 0;
+}
+
+/*Small screen/device integration*/
+@media(max-width: 700px){
+    .text-box h1{
+        font-size: 20px;
+    }
+
+    .nav-links ul li{   /*Targets the list of navigation links, makes them inline and makes their positions relative*/
+        display: block;
+    }
+    .nav-links{   /*Targets the list of navigation links, makes them inline and makes their positions relative*/
+        position: absolute;
+        background: #4ebbff;
+        height: 100vh;
+        width: 200px;
+        top: 0;
+        right: -200px;
+        text-align: center;
+        z-index: 2;
+        transition: 1s;
+    }
+
+    nav .fa{
+        display: block;
+        color: #fff;
+        margin: 10px;
+        font-size: 22px;
+        cursor: pointer;
+    }
+    .nav-links ul{
+        padding: 30px;
+    }
+}
