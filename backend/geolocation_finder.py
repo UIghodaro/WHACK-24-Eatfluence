@@ -21,7 +21,7 @@ AI_AGENT_ADDRESS = "agent1qvnpu46exfw4jazkhwxdqpq48kcdg0u0ak3mz36yg93ej06xntklsx
 
 GOOGLE_MAPS_POI_AGENT_ADDRESS = "agent1qwzl3gekyh3034ynqz5e0jem35wszgjp69wxk68yavsuagqapdxjktfv0e9"
 
-address = "University of Warwick, Coventry"
+address = "Regent Street, London"
 
 @agent.on_event("startup")
 async def send_message(ctx: Context):

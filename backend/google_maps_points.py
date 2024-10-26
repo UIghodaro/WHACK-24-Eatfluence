@@ -77,8 +77,15 @@ async def handle_response(ctx: Context, sender: str, msg: POIResponse):
         nearby_places.append(place.location_name)
     
     for n in nearby_places:
-        print("Scraping " + str(n))
-        trend_scraper.tiktok_scrape(n)
+        name_score = trend_scraper.analyse_food_relation(n)
+        print("Name score: " + str(name_score))
+
+        restaurant_name = n
+        if name_score < 0.45:
+            restaurant_name = restaurant_name + " Restaurant"
+
+        print("Scraping " + str(restaurant_name))
+        trend_scraper.tiktok_scrape(restaurant_name)
 
 if __name__ == "__main__":
     agent.run()
