@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eatfluence</title>
+    <link rel ="stylesheet" href="styles.css">
+    
+    <!--The Fonts.-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- Fontawesome icons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+</head>
+<body>
+    <section class="home">
+        <nav>
+            <a href="home.html"><img src = "Images/Screenshot 2023-10-02 175321.png"></a>
+            <div class = "nav-links" id = navLinks>
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href = "home.html">HOME</a></li>
+                    <li><a href= "about.html">ABOUT</a></li>
+                    <li><a href= "report.html">REPORT</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i> <!--Icons-->
+        </nav>
+        <div class="IntroStatement">
+            <h1><strong>You hungry yet?</strong></h1>
+            <h2>Welcome to your one stop shop for the trendiest spots!</h2>
+            <form action="trends.html">
+            <input type="text" id="Loca" name="Loca" placeholder="Location" required>
+            <input type="submit" value="Let's eat!" class = "subBtn">
+        </form>
+        </div>
+    </section>
+    <!-- Footer -->
+    <section class = "Footer">
+        <p> placeholder</p>
+    </section>
+
+
+<!-- Toggle Menu For Small Devices -->
+    <script>
+        var navLinks = document.getElementById("navLinks");
+
+        function showMenu(){
+            navLinks.style.right = "0";
+        }
+        function hideMenu(){
+            navLinks.style.right = "-200px";
+        }
+    </script>
+
+</body>
+</html>
