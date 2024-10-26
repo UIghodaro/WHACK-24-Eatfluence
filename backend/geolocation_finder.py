@@ -21,17 +21,17 @@ AI_AGENT_ADDRESS = "agent1qvnpu46exfw4jazkhwxdqpq48kcdg0u0ak3mz36yg93ej06xntklsx
 
 GOOGLE_MAPS_POI_AGENT_ADDRESS = "agent1qwzl3gekyh3034ynqz5e0jem35wszgjp69wxk68yavsuagqapdxjktfv0e9"
 
-address = "Munich, Germany"
+address = "University of Warwick, Coventry"
 
 @agent.on_event("startup")
 async def send_message(ctx: Context):
     await ctx.send(AI_AGENT_ADDRESS, GeolocationRequest(address=address))
-    ctx.logger.info(f"Sent address to Geolocation agent: {address}")
+    # ctx.logger.info(f"Sent address to Geolocation agent: {address}")
 
 
 @agent.on_message(model=GeolocationResponse)
 async def handle_response(ctx: Context, sender: str, msg: GeolocationResponse):
-    ctx.logger.info(f"Received response from {sender}:")
+    # ctx.logger.info(f"Received response from {sender}:")
     ctx.logger.info(f"Latitude: {msg.latitude}, Longitude: {msg.longitude}")
     
     await ctx.send(GOOGLE_MAPS_POI_AGENT_ADDRESS, GeolocationResponse(latitude = msg.latitude, longitude = msg.longitude))

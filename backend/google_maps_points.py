@@ -2,6 +2,7 @@ from typing import Any, Dict, List, Optional
 
 from uagents import Model, Context, Agent
 from uagents.setup import fund_agent_if_low
+import trend_scraper
 
 class Coordinates(Model):
     latitude: float
@@ -54,34 +55,30 @@ agent = Agent(
 
 GMAPS_AGENT_ADDRESS = "agent1qvcqsyxsq7fpy9z2r0quvng5xnhhwn3vy7tmn5v0zwr4nlm7hcqrckcny9e"
 
-example_request = POIAreaRequest(
-    loc_search=Coordinates(latitude=48.140505822096365, longitude=11.559987118245475),
-    radius_in_m=500,
-    limit=8,
-    query_string="coffee shop",
-)
-
-
-# @agent.on_event("startup")
-# async def handle_startup(ctx: Context):
-#     ctx.logger.info(agent.address)
-#     await ctx.send(GMAPS_AGENT_ADDRESS, example_request)
-#     ctx.logger.info(f"Sent request to  agent: {example_request}")
-
-
 @agent.on_message(model = GeolocationResponse)
 async def message_handler(ctx: Context, sender : str, msg: GeolocationResponse):
-    ctx.logger.info(f'Recieved message from {sender} : {msg.latitude} , {msg.longitude}')
+    # ctx.logger.info(f'Recieved message from {sender} : {msg.latitude} , {msg.longitude}')
 
     await ctx.send(GMAPS_AGENT_ADDRESS, POIAreaRequest(
         loc_search=Coordinates(latitude=msg.latitude, longitude=msg.longitude),
         radius_in_m=500,
-        limit=8,
-        query_string="coffee shop",
+        limit=4,
+        query_string="restaurant",
     ))
 
 @agent.on_message(POIResponse)
 async def handle_response(ctx: Context, sender: str, msg: POIResponse):
-    ctx.logger.info(f"Received {len(msg.data)} pois from: {sender}")
+    # ctx.logger.info(f"Received {len(msg.data)} pois from: {sender}")
+
+    nearby_places = []
+
     for place in msg.data:
         ctx.logger.info(place.location_name)
+        nearby_places.append(place.location_name)
+    
+    for n in nearby_places:
+        print("Scraping " + str(n))
+        trend_scraper.tiktok_scrape(n)
+
+if __name__ == "__main__":
+    agent.run()
