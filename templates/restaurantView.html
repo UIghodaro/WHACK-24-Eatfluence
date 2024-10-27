@@ -31,7 +31,9 @@
             <i class="fa fa-bars" onclick="showMenu()"></i> <!--Icons-->
         </nav>
     </section>
-
+    <!-- Loading Screen cause ai running,  -->
+    <div class = "loader"> </div>
+    
     <!-- Main, Trends appear here -->
      <section class = "trendies">
         <p><strong>Imagine a bunch of really trendy restaurants appearing here in order</strong></p>
@@ -40,6 +42,12 @@
 
 <!-- Toggle Menu For Small Devices, using JS -->
     <script>
+        window.addEventListener("load", () =>{
+            document.querySelector(".loader").classList.add("loader--hidden");
+            document.querySelector(".loader").addEventListener("transitionend", () =>{
+                document.body.removeChild(document.querySelector(".loader"));
+            })
+        })
         var navLinks = document.getElementById("navLinks");
 
         function showMenu(){
