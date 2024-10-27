@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eatfluence</title>
-    <link rel ="stylesheet" href="styles.css">
+    <link rel ="stylesheet" href="../static/css/styles.css">
+    <link rel = "shortcut icon" type="x-icon" href="../static/css/Images/shortLogo.png">
     
     <!--The Fonts.-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +18,7 @@
 <body>
     <section class="header">
         <nav>
-            <a href="home.html"><img src = "Images/Screenshot 2023-10-02 175321.png"></a>
+            <a href="home.html"><img src = "../static/css/Images/Logo-Longso.png"></a>
             <div class = "nav-links" id = navLinks>
                 <i class="fa fa-times" onclick="hideMenu()"></i>
                 <ul>
@@ -34,7 +35,7 @@
 
     <!-- Main, Trends appear here -->
      <section id = "trendyRestaurants">
-        <p><strong>Imagine a bunch of really trendy restaurants appearing here in order</strong></p>
+        <p><strong>What would you like to try today?:</strong></p>
         
         <div id = "trendsLayout">
         </div>
@@ -44,12 +45,6 @@
             <!-- Need to: store results from fetch concisely, indexing them and then displaying them via "for" loop??? -->
     
     </section>
-
-    <!-- Footer -->
-    <section class = "Footer">
-        <p> placeholder</p>
-    </section>
-
 
 <!-- Generates restaurant blocks and makes them scroll onscreen -->
     <script>
@@ -67,7 +62,7 @@
                 const newElt = document.createElement("a");
                 newElt.href = "restaurantView.html";
                 newElt.className = "Restaurant";
-                newElt.innerHTML = "Here is another example!"
+                newElt.innerHTML = '<div class ="Stats"><ul><li>Likes: </li><li>Comments: </li><li>Shares: </li><li>Saves: </li></ul></div>';
 
                 document.getElementById("trendsLayout").appendChild(newElt);
             }
@@ -97,7 +92,6 @@
     
     // Get the 'data' parameter from the URL
     var receivedData = getQueryParam('data');
-    console.log('Received Data:', receivedData);
     
     // Use the received data as needed
     //Toggle Menu For Small Devices, using JS
