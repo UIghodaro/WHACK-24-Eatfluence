@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eatfluence</title>
     <link rel ="stylesheet" href="styles.css">
+    <link rel = "shortcut icon" type="x-icon" href="Images/shortLogo.png">
     
     <!--The Fonts.-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,7 +62,7 @@
                 const newElt = document.createElement("a");
                 newElt.href = "restaurantView.html";
                 newElt.className = "Restaurant";
-                newElt.innerHTML = "Here is another example!"
+                newElt.innerHTML = '<div class ="Stats"><ul><li>Likes: </li><li>Comments: </li><li>Shares: </li><li>Saves: </li></ul></div>';
 
                 document.getElementById("trendsLayout").appendChild(newElt);
             }
@@ -91,7 +92,6 @@
     
     // Get the 'data' parameter from the URL
     var receivedData = getQueryParam('data');
-    console.log('Received Data:', receivedData);
     
     // Use the received data as needed
     //Toggle Menu For Small Devices, using JS

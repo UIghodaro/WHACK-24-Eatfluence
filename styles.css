@@ -173,14 +173,15 @@ nav .fa{
 /*#trendsLayout{
 }*/
 
+/*Dealing with the restaurants and their semantics*/
 .Restaurant{
     text-decoration: none;
-    color: #fff;
+    color: #000000;
     display: flex;
-    border: 1px solid #fff;
+    border: 1px solid #2f2f2f;
     padding: 12px 34px;
-    font-size: 13px;
-    background-color: #893c00;
+    font-size: 17px;
+    background-color: transparent;
     align-items: center;
     justify-content: center;
     width: 70%;
@@ -195,9 +196,25 @@ nav .fa{
     transform: translateX(0);
 }
 .Restaurant:hover{
-    border: 1px solid #e06100;
-    background-color: #e06100;
+    color: #ffffff;
+    border: 1px solid #000000;
+    background-color: #2b2b2b;
     transition: 1s;
+}
+
+/*Restaurant statistics*/
+.Stats{
+    flex: 1;
+    text-align: right;
+}
+.Stats ul li{   /*Targets the list of navigation links, makes them inline and makes their positions relative*/
+    list-style: none;
+    padding: 8px 12px;
+    position: relative;
+}
+.Stats ul li a{
+    color: #ff008c;
+    text-decoration: none;
 }
 
 .footer{
