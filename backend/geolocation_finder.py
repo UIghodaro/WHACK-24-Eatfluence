@@ -8,16 +8,16 @@ class GeolocationResponse(Model):
     latitude: float
     longitude: float
 
-AGENT_MAILBOX_KEY = "25eb6f8b-7a5b-448e-b88d-b3104156f5f8"
+AGENT_MAILBOX_KEY = ""
 
 agent = Agent(
     name="user",
-    seed = 'geolocation seed 2024 again',
+    seed = 'a new key for this',
     mailbox=f"{AGENT_MAILBOX_KEY}@https://agentverse.ai",
     port = 8001
 )
 
-AI_AGENT_ADDRESS = "agent1qvnpu46exfw4jazkhwxdqpq48kcdg0u0ak3mz36yg93ej06xntklsxcwplc"
+AI_AGENT_ADDRESS = ""
 
 GOOGLE_MAPS_POI_AGENT_ADDRESS = "agent1qt2xqcpy47vwzzkmzh93hnl6847v2s03t0nk4mszvcf4pf2enya5y7gmmt7"
 

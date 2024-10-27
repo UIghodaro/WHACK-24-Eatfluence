@@ -44,61 +44,63 @@ class POIResponse(Model):
     data_origin: str
     data: List[POI]
 
-class Request(Model):
-    text: str
+# class Request(Model):
+#     text: str
  
-class Response(Model):
-    timestamp: int
-    text: str
-    agent_address: str
+# class Response(Model):
+#     timestamp: int
+#     text: str
+#     agent_address: str
 
-AGENT_MAILBOX_KEY_GEO = "25eb6f8b-7a5b-448e-b88d-b3104156f5f8"
+AGENT_MAILBOX_KEY_GEO = "9c078638-9bac-4e3f-acff-237bc3850dde"
+AI_AGENT_ADDRESS = "agent1qg9eyfjgqku9xpq0yvzkhzucsw7k9fh3jdt05e7y764wnj3t8lzr6q0yw9p"
 geo_agent = Agent(
     name="user",
-    seed = 'geolocation seed 2024 again',
+    seed = 'a new key for this',
     mailbox=f"{AGENT_MAILBOX_KEY_GEO}@https://agentverse.ai",
     port = 8001
 )
 
-AGENT_MAILBOX_KEY_POI = ""
+AGENT_MAILBOX_KEY_POI = "3d183117-a137-486e-896a-1ae3bc4f6ff3"
+GOOGLE_MAPS_POI_AGENT_ADDRESS = "agent1qt2ugt8egv72es0fq2md2sj5waxz0k347pgakfsx706pfpq8z9n759p9k4g"
 poi_agent = Agent(
     name="user",
-    seed = 'user for luis whack 2024 v2222',
+    seed = 'my final attempt',
     mailbox=f"{AGENT_MAILBOX_KEY_POI}@https://agentverse.ai",
     port = 8002
 )
 
 crazy_address = "University of Warwick, Coventry"
 
-AI_AGENT_ADDRESS = "agent1qvnpu46exfw4jazkhwxdqpq48kcdg0u0ak3mz36yg93ej06xntklsxcwplc"
+
 @geo_agent.on_event("startup")
 async def send_message(ctx: Context):
     ctx.logger.info(f"Sent address to Geolocation agent: {crazy_address}")
     await ctx.send(AI_AGENT_ADDRESS, GeolocationRequest(address=crazy_address))
 
-@geo_agent.on_rest_get("/rest/get", Response)
-async def handle_get(ctx: Context) -> Dict[str, Any]:
-    ctx.logger.info("Received GET request")
-    return {
-        "timestamp": int(time.time()),
-        "text": "Hello from the GET handler!",
-        "agent_address": ctx.agent.address,
-    }
+# @geo_agent.on_rest_get("/rest/get", Response)
+# async def handle_get(ctx: Context) -> Dict[str, Any]:
+#     ctx.logger.info("Received GET request")
+#     return {
+#         "timestamp": int(time.time()),
+#         "text": "Hello from the GET handler!",
+#         "agent_address": ctx.agent.address,
+#     }
  
-@geo_agent.on_rest_post("/rest/post", Request, Response)
-async def handle_post(ctx: Context, req: Request) -> Response:
-    ctx.logger.info("Received POST request")
-    return Response(
-        text=f"Received: {req.text}",
-        agent_address=ctx.agent.address,
-        timestamp=int(time.time()),
-    )
+# @geo_agent.on_rest_post("/rest/post", Request, Response)
+# async def handle_post(ctx: Context, req: Request) -> Response:
+#     ctx.logger.info("Received POST request")
+#     return Response(
+#         text=f"Received: {req.text}",
+#         agent_address=ctx.agent.address,
+#         timestamp=int(time.time()),
+#     )
     
 
-GOOGLE_MAPS_POI_AGENT_ADDRESS = "agent1qwf6cn80p4q97pw57g0elzf6d4jrg8jfkmafu6z6jhjwurdganw7u0m865e"
+
 @geo_agent.on_message(model=GeolocationResponse)
 async def handle_response(ctx: Context, sender: str, msg: GeolocationResponse):
-    # ctx.logger.info(f"Received response from {sender}:")
+    ctx.logger.info(f"Received response from {sender}:")
     ctx.logger.info(f"Latitude: {msg.latitude}, Longitude: {msg.longitude}")
     
     await ctx.send(GOOGLE_MAPS_POI_AGENT_ADDRESS, GeolocationResponse(latitude = msg.latitude, longitude = msg.longitude))
@@ -109,19 +111,12 @@ example_request = POIAreaRequest(
     query_string="coffee shop",
 )
 
-GMAPS_AGENT_ADDRESS = "agent1qwf6cn80p4q97pw57g0elzf6d4jrg8jfkmafu6z6jhjwurdganw7u0m865e"
+GMAPS_AGENT_ADDRESS = "agent1qt2ugt8egv72es0fq2md2sj5waxz0k347pgakfsx706pfpq8z9n759p9k4g"
 @poi_agent.on_message(model = GeolocationResponse)
 async def message_handler(ctx: Context, sender : str, msg: GeolocationResponse):
     ctx.logger.info(f'Recieved message from {sender} : {msg.latitude} , {msg.longitude}')
 
     await ctx.send(GMAPS_AGENT_ADDRESS, example_request)
-
-
-# @poi_agent.on_event("startup")
-# async def handle_startup(ctx: Context):
-#     await ctx.send(GMAPS_AGENT_ADDRESS, example_request)
-#     ctx.logger.info(f"Sent request to  agent: {example_request}")
-
 
 @poi_agent.on_message(POIResponse)
 async def handle_response(ctx: Context, sender: str, msg: POIResponse):
