@@ -166,7 +166,7 @@ nav .fa{
 }
 #trendyRestaurants p{
     font-size: 30px;
-    color: #00fffb;
+    color: #ff008c;
     padding: 10px 0 10px;
     animation: fade-down 1s;
 }
@@ -206,6 +206,9 @@ nav .fa{
 .Stats{
     flex: 1;
     text-align: right;
+}
+.Stats p{
+    text-align: left;
 }
 .Stats ul li{   /*Targets the list of navigation links, makes them inline and makes their positions relative*/
     list-style: none;

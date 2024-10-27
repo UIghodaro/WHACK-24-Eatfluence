@@ -36,7 +36,12 @@
     <!-- Main, Trends appear here -->
      <section id = "trendyRestaurants">
         <p><strong>What would you like to try today?:</strong></p>
-        
+        <a class = Restaurant href = "restaurantView.html"><div class ="Stats"><p>Warwick, Asian Gardens</p><ul><li>Likes: 1130</li><li>Comments: 7</li><li>Saves: 683</li></ul></div> </a>
+        <a class = Restaurant href = "restaurantView.html"><div class ="Stats"><p>Warwick, Two Brother's Bakery</p><ul><li>Likes: 1396</li><li>Comments: 29</li><li>Saves: 667</li></ul></div> </a>
+        <a class = Restaurant href = "restaurantView.html"><div class ="Stats"><p>Warwick, Vanda</p><ul><li>Likes: 1604</li><li>Comments: 76</li><li>Saves: 230</li></ul></div> </a>
+        <a class = Restaurant href = "restaurantView.html"><div class ="Stats"><p>London, Soho(????)</p><ul><li>Likes: 386</li><li>Comments: 2</li><li>Saves: 220</li></ul></div> </a>
+        <a class = Restaurant href = "restaurantView.html"><div class ="Stats"><p>Leamington, A very cute place(?)</p><ul><li>Likes: 98</li><li>Comments: 0</li><li>Saves: 52</li></ul></div> </a>
+
         <div id = "trendsLayout">
         </div>
 
@@ -62,12 +67,12 @@
                 const newElt = document.createElement("a");
                 newElt.href = "restaurantView.html";
                 newElt.className = "Restaurant";
-                newElt.innerHTML = '<div class ="Stats"><ul><li>Likes: </li><li>Comments: </li><li>Shares: </li><li>Saves: </li></ul></div>';
+                newElt.innerHTML = '<div class ="Stats"><ul><p>Restaurant</p><li>Likes: </li><li>Comments: </li><li>Saves: </li></ul></div>';
 
                 document.getElementById("trendsLayout").appendChild(newElt);
             }
         }
-        generateItem(10);
+        generateItem(5);
 
         const Rests = document.querySelectorAll(".Restaurant");
 
