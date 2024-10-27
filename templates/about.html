@@ -6,31 +6,59 @@
     <title>Eatfluence</title>
     <link rel ="stylesheet" href="../static/css/styles.css">
     <link rel = "shortcut icon" type="x-icon" href="../static/css/Images/shortLogo.png">
-
+    
     <!--The Fonts.-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/fontawesome.min.css">
+
+    <!-- Fontawesome icons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
 </head>
 <body>
-    <section class="home">
+    <section class="about">
         <nav>
             <a href="home.html"><img src = "../static/css/Images/Logo-Longso.png"></a>
-            <div class = "nav-links">
-                <i class="fa fa-times"></i>
+            <div class = "nav-links" id = navLinks>
+                <i class="fa fa-times" onclick="hideMenu()"></i>
                 <ul>
                     <li><a href = "home.html">HOME</a></li>
                     <li><a href= "about.html">ABOUT</a></li>
                     <li><a href= "report.html">REPORT</a></li>
                 </ul>
             </div>
-            <i class="fa fa-bars"></i>
+            <i class="fa fa-bars" onclick="showMenu()"></i> <!--Icons-->
         </nav>
-
-        
+        <div class="aboutStatements">
+            <h1>About Our Vision</h1><br>
+            <h3>You hungry yet?</h3><br>
+            <ol>
+                <li> Inspiration - Keeping it short, our vision started from a simple question, "how do people find those truly life changing experiences"?<br>The simple answer was it's complicated, the longer answer was "by chance" or "via another's recommendation"...<br>BUT. What if we could collate the verified good experiences into one? That is what we set out to do.</li>
+                <br><li> So what does it do? - Our app retrieves the most popular and trendy tik toks to do with restaurants in an area of your choice,<br>before simplifying these tik-toks and presenting the option to go or not to you!</li>
+                <br><li>Why We're proud of it - It was damn hard. Don't ask us how we did it, we just did it and it was hard. (please someone get that song reference) </li>
+            </ol>
+        </div>
     </section>
+    <!-- Loading Screen cause ai running,  -->
+    <div class = "loader"> </div>
+
+<!-- Toggle Menu For Small Devices, using JS -->
+    <script>
+        window.addEventListener("load", () =>{
+            document.querySelector(".loader").classList.add("loader--hidden");
+            document.querySelector(".loader").addEventListener("transitionend", () =>{
+                document.body.removeChild(document.querySelector(".loader"));
+            })
+        })
+        var navLinks = document.getElementById("navLinks");
+
+        function showMenu(){
+            navLinks.style.right = "0";
+        }
+        function hideMenu(){
+            navLinks.style.right = "-200px";
+        }
+    </script>
 </body>
 </html>
 =======

@@ -3,11 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Eatfluence</title>
+    <link rel ="stylesheet" href="../static/css/styles.css">
+    <link rel = "shortcut icon" type="x-icon" href="../static/css/Images/shortLogo.png">
+    
+    <!--The Fonts.-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- Fontawesome icons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
 </head>
 <body>
-    
-    
+    <section class="header">
+        <nav>
+            <a href="home.html"><img src = "../static/css/Images/Logo-Longso.png"></a>
+            <div class = "nav-links" id = navLinks>
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href = "home.html">HOME</a></li>
+                    <li><a href= "about.html">ABOUT</a></li>
+                    <li><a href= "report.html">REPORT</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i> <!--Icons-->
+        </nav>
+    </section>
+    <!-- Loading Screen cause ai running,  -->
+    <div class = "loader"> </div>
+
+    <!-- Main, Trends appear here -->
+     <section class = "trendies">
+        <p><strong>This feature will be implemented soon! (This is a lie)</strong></p>
+     </section>
+
+<!-- Toggle Menu For Small Devices, using JS -->
+    <script>
+        window.addEventListener("load", () =>{
+            document.querySelector(".loader").classList.add("loader--hidden");
+            document.querySelector(".loader").addEventListener("transitionend", () =>{
+                document.body.removeChild(document.querySelector(".loader"));
+            })
+        })
+        var navLinks = document.getElementById("navLinks");
+
+        function showMenu(){
+            navLinks.style.right = "0";
+        }
+        function hideMenu(){
+            navLinks.style.right = "-200px";
+        }
+    </script>
 </body>
 </html>
 =======
