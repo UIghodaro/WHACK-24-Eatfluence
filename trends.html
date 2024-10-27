@@ -29,14 +29,15 @@
             <i class="fa fa-bars" onclick="showMenu()"></i> <!--Icons-->
         </nav>
     </section>
+    <!-- Loading Screen cause ai running,  -->
+    <div class = "loader"> </div>
 
     <!-- Main, Trends appear here -->
-     <section class = "trendsLayout">
+     <section id = "trendyRestaurants">
         <p><strong>Imagine a bunch of really trendy restaurants appearing here in order</strong></p>
         
-        
-        <a href= variable>
-            
+        <div id = "trendsLayout">
+        </div>
 
 
             <!-- I think the main problem with integration will be importing the backend as a function. If we can do that the rest should follow pretty easily, then it's simply a matter of front-ending it -->
@@ -50,8 +51,56 @@
     </section>
 
 
-<!-- Toggle Menu For Small Devices, using JS -->
+<!-- Generates restaurant blocks and makes them scroll onscreen -->
     <script>
+        window.addEventListener("load", () =>{
+            document.querySelector(".loader").classList.add("loader--hidden");
+            document.querySelector(".loader").addEventListener("transitionend", () =>{
+                document.body.removeChild(document.querySelector(".loader"));
+            })
+        })
+
+        const parent = document.getElementById("trendsLayout");
+
+        function generateItem(resultsNumber) {
+            for(let i = 0; i < resultsNumber; i++){
+                const newElt = document.createElement("a");
+                newElt.href = "restaurantView.html";
+                newElt.className = "Restaurant";
+                newElt.innerHTML = "Here is another example!"
+
+                document.getElementById("trendsLayout").appendChild(newElt);
+            }
+        }
+        generateItem(10);
+
+        const Rests = document.querySelectorAll(".Restaurant");
+
+        const checkRestaurants = () => {
+            const triggerBottom = (window.innerHeight/5)*4;
+            Rests.forEach((Restaurant)=>{
+                const RestTop = Restaurant.getBoundingClientRect().top;
+                if(RestTop < triggerBottom) Restaurant.classList.add("show");
+                else box.classList.remove("show");
+            });
+        };
+
+        window.addEventListener("scroll",checkRestaurants);
+        checkRestaurants();
+    
+
+        // Function to get query parameters from URL
+        function getQueryParam(key) {
+            const urlSearchParams = new URLSearchParams(window.location.search);
+            return urlSearchParams.get(key);
+        }
+    
+    // Get the 'data' parameter from the URL
+    var receivedData = getQueryParam('data');
+    console.log('Received Data:', receivedData);
+    
+    // Use the received data as needed
+    //Toggle Menu For Small Devices, using JS
         var navLinks = document.getElementById("navLinks");
 
         function showMenu(){
