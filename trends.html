@@ -29,16 +29,15 @@
             <i class="fa fa-bars" onclick="showMenu()"></i> <!--Icons-->
         </nav>
     </section>
+    <!-- Loading Screen cause ai running,  -->
+    <div class = "loader"> </div>
 
     <!-- Main, Trends appear here -->
-     <section id = "trendsLayout">
+     <section id = "trendyRestaurants">
         <p><strong>Imagine a bunch of really trendy restaurants appearing here in order</strong></p>
         
-        <div>
-
+        <div id = "trendsLayout">
         </div>
-        <a href = "restaurantView.html" class = "Restaurant"> Here is an example item!</a><br>
-            
 
 
             <!-- I think the main problem with integration will be importing the backend as a function. If we can do that the rest should follow pretty easily, then it's simply a matter of front-ending it -->
@@ -52,8 +51,15 @@
     </section>
 
 
-<!--  -->
+<!-- Generates restaurant blocks and makes them scroll onscreen -->
     <script>
+        window.addEventListener("load", () =>{
+            document.querySelector(".loader").classList.add("loader--hidden");
+            document.querySelector(".loader").addEventListener("transitionend", () =>{
+                document.body.removeChild(document.querySelector(".loader"));
+            })
+        })
+
         const parent = document.getElementById("trendsLayout");
 
         function generateItem(resultsNumber) {

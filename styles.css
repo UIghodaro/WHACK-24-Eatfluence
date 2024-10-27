@@ -82,13 +82,16 @@ nav img{
     text-align: center;
 }
 .IntroStatement h1{
-    font-size: 50px;
+    font-size: 62px;
     animation: fade-down 2s;
 }
 .IntroStatement h2, .subBtn{
     margin: 10px 0 40px;
     font-size: 30px;
     color: aquamarine;
+    animation: fade-up 2s;
+}
+.IntroStatement h3{
     animation: fade-up 2s;
 }
 
@@ -119,41 +122,49 @@ nav img{
     transition: 1s;
 }
 
-
-/* Keyframes */
-@keyframes fade-down {
-    0%{
-        opacity: 0;
-        transform: translateY(-60px) scale(0.9);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0px) scale(1);
-    }
-}
-@keyframes fade-up {
-    0%{
-        opacity: 0;
-        transform: translateY(60px) scale(0.9);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0px) scale(1);
-    }
-}
-
-
 /*Small screen toggle bar*/
 nav .fa{
     display: none;
+}
+
+/*Loading screen functionality*/
+.loader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #333333;
+    transition: opacity 0.75s, visibility 0.75s;
+}
+.loader--hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+.loader::after{
+    content: "";
+    width: 75px;
+    height: 75px;
+    border: 15px solid #dddddd;
+    border-top-color: #009578;
+    border-radius: 50%;
+    animation: loading 0.75s ease infinite;
 }
 
 
 /*Let's eat! - Home Use section*/
 
 /*To do with the restaurant button creation*/
+#trendyRestaurants{
+    background-color: #00055c;
+    text-align: center;
+}
+/*#trendsLayout{
+}*/
+
 .Restaurant{
     text-decoration: none;
     color: #fff;
@@ -169,11 +180,11 @@ nav .fa{
     margin: 10px;
     cursor: pointer;
 
-    transform: translateX(400%);
+    transform: translateX(125%);
     transition: transform 1s ease;
 }
 .Restaurant:nth-of-type(even) {
-    transform:translateX(-400%);
+    transform:translateX(-125%);
 }
 .Restaurant.show{
     transform: translateX(0);
@@ -188,6 +199,42 @@ nav .fa{
     width: 100%;
     text-align: center;
     padding: 30px 0;
+}
+
+/* Keyframes */
+@keyframes fade-down {
+    0%{
+        opacity: 0;
+        transform: translateY(-60px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+}
+@keyframes fade-up {
+    0%{
+        opacity: 0;
+        transform: translateY(60px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+}
+@keyframes fade-in {
+    0%{
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+@keyframes loading {
+    from {transform: rotate(0turn);}
+    to {transform: rotate(1turn);}
 }
 
 /*Small screen/device integration*/
