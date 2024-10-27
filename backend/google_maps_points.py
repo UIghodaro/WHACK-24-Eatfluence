@@ -1,14 +1,9 @@
 from typing import Any, Dict, List, Optional
-
-from uagents import Model, Context, Agent
+from uagents import Model
 from uagents.setup import fund_agent_if_low
-import trend_scraper
+
 
 class Coordinates(Model):
-    latitude: float
-    longitude: float
-
-class GeolocationResponse(Model):
     latitude: float
     longitude: float
 
@@ -45,47 +40,33 @@ class POIResponse(Model):
 
 from uagents import Agent, Context
 
-AGENT_MAILBOX_KEY = "28ef9025-0b27-45a4-94b4-7d3e44e200bc"
-
+AGENT_MAILBOX_KEY = "5a5a53ea-b3b3-430a-a11f-53b71e02be80"
 agent = Agent(
     name="user",
-    seed = 'user for luis whack 2024',
-    mailbox=f"{AGENT_MAILBOX_KEY}@https://agentverse.ai",
+    seed = 'hackathonss',
+    mailbox=f"{AGENT_MAILBOX_KEY}@https://agentverse.ai")
+
+GMAPS_AGENT_ADDRESS = "agent1qwf6cn80p4q97pw57g0elzf6d4jrg8jfkmafu6z6jhjwurdganw7u0m865e"
+
+example_request = POIAreaRequest(
+    loc_search=Coordinates(latitude=48.140505822096365, longitude=11.559987118245475),
+    radius_in_m=500,
+    query_string="coffee shop",
 )
 
-GMAPS_AGENT_ADDRESS = "agent1qvcqsyxsq7fpy9z2r0quvng5xnhhwn3vy7tmn5v0zwr4nlm7hcqrckcny9e"
 
-@agent.on_message(model = GeolocationResponse)
-async def message_handler(ctx: Context, sender : str, msg: GeolocationResponse):
-    # ctx.logger.info(f'Recieved message from {sender} : {msg.latitude} , {msg.longitude}')
+@agent.on_event("startup")
+async def handle_startup(ctx: Context):
+    await ctx.send(GMAPS_AGENT_ADDRESS, example_request)
+    ctx.logger.info(f"Sent request to  agent: {example_request}")
 
-    await ctx.send(GMAPS_AGENT_ADDRESS, POIAreaRequest(
-        loc_search=Coordinates(latitude=msg.latitude, longitude=msg.longitude),
-        radius_in_m=500,
-        limit=4,
-        query_string="restaurant",
-    ))
 
 @agent.on_message(POIResponse)
 async def handle_response(ctx: Context, sender: str, msg: POIResponse):
-    # ctx.logger.info(f"Received {len(msg.data)} pois from: {sender}")
-
-    nearby_places = []
-
+    ctx.logger.info(f"Received {len(msg.data)} pois from: {sender}")
     for place in msg.data:
         ctx.logger.info(place.location_name)
-        nearby_places.append(place.location_name)
-    
-    for n in nearby_places:
-        name_score = trend_scraper.analyse_food_relation(n)
-        print("Name score: " + str(name_score))
 
-        restaurant_name = n
-        if name_score < 0.45:
-            restaurant_name = restaurant_name + " Restaurant"
-
-        print("Scraping " + str(restaurant_name))
-        trend_scraper.tiktok_scrape(restaurant_name)
 
 if __name__ == "__main__":
     agent.run()
