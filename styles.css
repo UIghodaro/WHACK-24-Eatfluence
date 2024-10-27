@@ -16,7 +16,8 @@
 
 /*BACKGROUND HANDLING*/
 .header{
-    background-color: #464ffa;
+    background-image: linear-gradient(#000000, #2f2f2f);
+    animation: fade-down-full 2s;
 }
 
 .home{
@@ -39,7 +40,7 @@ nav{
 }
 
 nav img{
-    width: 150px;
+    width: 200px;
 }
 .nav-links{   /*Puts the navigation links to the right*/
     flex: 1;
@@ -53,7 +54,7 @@ nav img{
 }
 
 .nav-links ul li a{
-    color: #893c00;
+    color: #ff008c;
     text-decoration: none;
     font-size: 13px;
 }
@@ -73,7 +74,7 @@ nav img{
 /*Home Main Body items*/
 .IntroStatement{
     width: 90%;
-    color: #1683ff;
+    color: #00fffb;
     font-weight: 300;
     position: absolute;
     top: 50%;
@@ -81,12 +82,7 @@ nav img{
     transform: translate(-50%,-50%);
     text-align: center;
 }
-.IntroStatement h1{
-    font-size: 62px;
-    animation: fade-down 2s;
-}
 .IntroStatement h2, .subBtn{
-    margin: 10px 0 40px;
     font-size: 30px;
     color: aquamarine;
     animation: fade-up 2s;
@@ -120,6 +116,12 @@ nav img{
     border: 1px solid #1683ff;
     background: #1683ff;
     transition: 1s;
+}
+
+#test img{
+    width: 250px;
+    position: relative;
+    animation: fade-in 2s;
 }
 
 /*Small screen toggle bar*/
@@ -159,8 +161,14 @@ nav .fa{
 
 /*To do with the restaurant button creation*/
 #trendyRestaurants{
-    background-color: #00055c;
+    background-color: #ffffff;
     text-align: center;
+}
+#trendyRestaurants p{
+    font-size: 30px;
+    color: #00fffb;
+    padding: 10px 0 10px;
+    animation: fade-down 1s;
 }
 /*#trendsLayout{
 }*/
@@ -180,11 +188,8 @@ nav .fa{
     margin: 10px;
     cursor: pointer;
 
-    transform: translateX(125%);
+    transform: translateX(-160%);
     transition: transform 1s ease;
-}
-.Restaurant:nth-of-type(even) {
-    transform:translateX(-125%);
 }
 .Restaurant.show{
     transform: translateX(0);
@@ -210,6 +215,16 @@ nav .fa{
     100% {
         opacity: 1;
         transform: translateY(0px) scale(1);
+    }
+}
+@keyframes fade-down-full {
+    0%{
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
     }
 }
 @keyframes fade-up {
@@ -248,7 +263,7 @@ nav .fa{
     }
     .nav-links{   /*Targets the list of navigation links, makes them inline and makes their positions relative*/
         position: absolute;
-        background: #4ebbff;
+        background: #363636;
         height: 100vh;
         width: 200px;
         top: 0;
